@@ -1,0 +1,19 @@
+#user-info > div {
+  position: relative;
+  height: 54px;
+  padding-right: 70px;
+}
+#user-info > div > button {
+  height: 20px;
+  width: 58px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%)
+}
+
+#user-info img {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+}

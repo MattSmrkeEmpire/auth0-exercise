@@ -1,0 +1,29 @@
+.request-wr {
+  text-align: left;
+  padding: 10px;
+  margin: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.request-wr button {
+  padding: 10px;
+  background: blue;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.request-wr button:hover {
+  background: #4545b7;
+}
+
+.request-wr pre {
+  padding: 20px;
+  background: #eaeaea;
+  font-size: 12px;
+}
+
+.request-wr label {
+  font-size: 12px;
+  margin: 10px;
+}
