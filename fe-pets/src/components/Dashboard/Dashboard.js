@@ -13,9 +13,19 @@ class Dashboard extends React.Component {
     }
   }
 
+  getHeaders() {
+    let headers = {}
+    const accessToken = this.props.auth.getAccessToken()
+    if (accessToken) {
+      headers = { 'Authorization': `Bearer ${accessToken}`}
+    }
+    return headers
+  }
+
   makeGetRequest() {
     this.setState({getResponse: 'making request...'})
-    const request = axios.get(this.endpoint)
+    const headers = this.getHeaders()
+    const request = axios.get(this.endpoint, { headers })
     return request.then(
       response => {
         this.setState({getResponse: JSON.stringify(response.data, null, 2)})
@@ -28,10 +38,11 @@ class Dashboard extends React.Component {
 
   makePostRequest() {
     this.setState({postResponse: 'making request...'})
+    const headers = this.getHeaders()
     const request = axios.post(this.endpoint, {
       name: this.refs.postName.value,
       animal_type: this.refs.postAnimalType.value,
-    })
+    }, { headers })
     return request.then(
       response => {
         this.setState({postResponse: JSON.stringify(response.data, null, 2)})
@@ -44,7 +55,8 @@ class Dashboard extends React.Component {
 
   makeDeleteRequest() {
     this.setState({deleteResponse: 'making request...'})
-    const request = axios.delete(this.endpoint + this.refs.deleteId.value)
+    const headers = this.getHeaders()
+    const request = axios.delete(this.endpoint + this.refs.deleteId.value, { headers })
     return request.then(
       response => {
         this.setState({deleteResponse: JSON.stringify(response.data, null, 2)})

@@ -27,7 +27,7 @@ class App extends Component {
         <div className="app">
           <Header auth={auth} />
           <div className="container">
-            <Route path='/' exact render={props => <Dashboard {...props} />} />
+            <Route path='/' exact render={props => <Dashboard auth={auth} {...props} />} />
             <Route path='/auth0callback' render={props => {
               handleAuthentication(props)
               return <AuthCallback {...props} />

@@ -7,9 +7,9 @@ class AuthService {
     domain: AUTH0_CONFIG.domain,
     clientID: AUTH0_CONFIG.clientId,
     redirectUri: AUTH0_CONFIG.callbackUrl,
-    audience: `https://${AUTH0_CONFIG.domain}/userinfo`,
+    audience: AUTH0_CONFIG.audience,
     responseType: 'token id_token',
-    scope: 'openid profile email'
+    scope: 'openid profile email read:pets app_metadata'
   })
 
   login() {
@@ -60,6 +60,11 @@ class AuthService {
   getUserProfile() {
     let userProfile = JSON.parse(localStorage.getItem('profile')) || {}
     return userProfile
+  }
+
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token')
+    return accessToken
   }
 }
 
