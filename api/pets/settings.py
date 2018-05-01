@@ -153,8 +153,19 @@ if AUTH0_DOMAIN:
     JWT_ISSUER = 'https://' + AUTH0_DOMAIN + '/'
 
 def jwt_get_username_from_payload_handler(payload):
-    print(payload)
-    return 'apiuser'
+    roles = payload['http://petstoreapi/roles']
+    if roles is None:
+        print('apiuser')
+        return 'apiuser'
+    elif 'admin' in roles:
+        print('admin')
+        return 'apiadmin'
+    elif 'editor' in roles:
+        print('editor')
+        return 'apieditor'
+    else:
+        print('default')
+        return 'apiuser'
 
 JWT_AUTH = {
     'JWT_PAYLOAD_GET_USERNAME_HANDLER': jwt_get_username_from_payload_handler,
